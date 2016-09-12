@@ -1,0 +1,26 @@
+<ion-view view-title="Place Order">
+  <ion-content><br><br><br>
+    <div class="list card">
+      <div ng-repeat="list_item in cart_items">
+        <div class="item item-body">
+          <center>
+          {{list_item.item_name}}
+        </center><br><br>
+          <div class="increment">
+            <input type="image" src="img/android-add.png" name="image" width="16px" height="13px" id="close" ng-click="increment(list_item)">
+            <label id="counter">{{list_item.quantity}}</label>
+            <input type="image" src="img/android-remove.png" name="image" width="16px" height="13px" id="close" ng-click="decrement(list_item)">
+          </div>
+          <div class="cost">
+            Rs.{{list_item.qcost}}
+            <input type="image" src="img/android-close.png" name="image" width="16px" height="13px" id="close" ng-click="clicked(list_item.item_id)">
+          </div><br>
+        </div>
+      </div>
+    </div>
+    <center>Total : Rs {{total}}</center><br><br>
+    <center><button class="button button-positive" ng-click="proceed_payment()">
+        Proceed to Pay
+    </button></center>
+  </ion-content>
+</ion-view>

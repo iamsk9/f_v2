@@ -1,0 +1,50 @@
+<ion-view title="Register">
+  <ion-content padding="true">
+    <div class="hero no-header flat">
+      <div class="content">
+          <div class="app-icon"></div>
+          <center><h1 id="log">Fresh World</h1></center>
+      </div>
+    </div>
+    <form ng-submit="doSignUp()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Full Name</span>
+          <input type="text" ng-model="loginData.fullname">
+        </label><br>
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model="loginData.email">
+        </label><br>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="loginData.password">
+        </label><br>
+        <label class="item item-input">
+          <span class="input-label">Phone No</span>
+          <input type="text" ng-model="loginData.phoneno">
+        </label><br>
+        <label class="item item-input">
+          <span class="input-label">Landline No</span>
+          <input type="text" ng-model="loginData.landline">
+        </label><br>
+        <label class="item item-input">
+          <span class="input-label">Address</span>
+          <input type="text" ng-model="loginData.address">
+        </label><br>
+        <label class="item">
+          <button class="button button-block button-assertive" type="submit">Sign Up</button>
+        </label>
+        <br>
+          <center><a href="#/app/login" ng-click="goToLogin()">Already a user?Login Here...</a></center><br>
+        <label class="item">
+          <div class="button-bar social-login">
+                  <button class="button button-small button-border icon-left ion-social-google button-assertive">Google+</button>
+                  <button class="button button-small button-border icon-left ion-social-twitter button-calm">Twitter</button>
+                  <button class="button button-small button-border icon-left ion-social-facebook button-positive">Facebook</button>
+          </div>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

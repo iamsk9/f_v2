@@ -1,0 +1,32 @@
+<ion-view title="Login">
+  <ion-content padding="true">
+    <div class="hero no-header flat">
+            <div class="content">
+                <div class="app-icon"></div>
+                <center><h1 id="log">Fresh World</h1></center>
+            </div>
+        </div>
+    <form ng-submit="vm.doLogin()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model="vm.loginData.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="vm.loginData.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-assertive" type="submit">Log in</button>
+        </label>
+      </div>
+      <br>
+        <center><a href="#/app/register" ng-click="vm.goToRegister()">Not a User? Register Here..</a></center><br>
+    </form>
+    <div class="button-bar social-login">
+            <button class="button button-small button-border icon-left ion-social-google button-assertive">Google+</button>
+            <button class="button button-small button-border icon-left ion-social-twitter button-calm">Twitter</button>
+            <button class="button button-small button-border icon-left ion-social-facebook button-positive">Facebook</button>
+    </div>
+  </ion-content>
+</ion-view>

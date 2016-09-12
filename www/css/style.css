@@ -1,0 +1,32 @@
+/* Empty. Add your own CSS if you like */
+
+.app-icon {
+    background-color: #fff;
+    background: url('../img/logo.png') center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 125px;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 125px;
+}
+
+.rating{
+  float: left;
+}
+
+.add_cart,.cost{
+  float: right;
+}
+
+#close{
+  padding-left: 3px;
+}
+
+#counter{
+  padding: 10px;
+}
+
+.increment{
+  align-items: center;
+}

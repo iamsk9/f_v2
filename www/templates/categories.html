@@ -1,0 +1,7 @@
+<ion-view view-title="Categories">
+  <ion-content>
+    <div ng-repeat="category in categories" ng-click="selectCategory(category.id)">
+        <img src={{category.image}} style="width : 100% ; height : 100%" ng-click="clicked(category.id)"><br><br>
+      </div>
+  </ion-content>
+</ion-view>

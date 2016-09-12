@@ -1,0 +1,26 @@
+<ion-view view-title="Order Destination">
+  <ion-content><br><br><br>
+    <center><h2>Order Destination</h2></center>
+    <div class="list">
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Full Name</span>
+      <input type="text" ng-model="object.name">
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Email</span>
+      <input type="text" ng-model="object.email">
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Phone No</span>
+      <input type="text" ng-model="object.phoneno">
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Address</span>
+      <input type="text" ng-model="object.address">
+    </label><br>
+    <center><button class="button button-positive" ng-click="order()">
+        Order
+    </button></center>
+    </div>
+  </ion-content>
+</ion-view>
