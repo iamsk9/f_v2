@@ -1,4 +1,4 @@
-<ion-view view-title="Place Order">
+<ion-view view-title="Place Order" style="background: url(../../img/background.png)">
   <ion-content><br><br><br>
     <div class="list card">
       <div ng-repeat="list_item in cart_items">
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <center>Total : Rs {{total}}</center><br><br>
+    <center><p>Total : Rs {{total}}</p></center><br><br>
     <center><button class="button button-positive" ng-click="proceed_payment()">
         Proceed to Pay
     </button></center>

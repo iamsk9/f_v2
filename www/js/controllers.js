@@ -77,7 +77,7 @@ angular.module('starter.controllers', [])
   });
 
   $scope.proceed_payment = function(){
-    $state.go('app.checkout');
+    $state.go('app.order');
   };
 
   $scope.clicked = function (id) {
@@ -97,10 +97,6 @@ angular.module('starter.controllers', [])
     object.qcost = object.qcost - object.cost;
     $scope.total = $scope.total - object.cost;
   };
-
-  $scope.proceed_payment = function(){
-    console.log($scope.cart_items);
-  }
 })
 .controller('OrderCtrl', function($scope, Backand, $http, $ionicPopup, $state, $location) {
   $scope.order = function(){

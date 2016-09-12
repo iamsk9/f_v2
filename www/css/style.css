@@ -11,8 +11,43 @@
     width: 125px;
 }
 
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+
+
+body {
+  margin: 10px;
+}
+
+h1
+{
+  color : white;
+}
+
 .rating{
   float: left;
+}
+
+#sub{
+  width:200px;
+  background-color: red;
 }
 
 .add_cart,.cost{
@@ -23,10 +58,73 @@
   padding-left: 3px;
 }
 
-#counter{
-  padding: 10px;
-}
-
 .increment{
   align-items: center;
+}
+
+p{
+  color : red;
+}
+
+p{
+  color:white;
+}
+
+.item{
+  background-color: transparent;
+  border-width: 0px;
+}
+
+input[type=password] {
+    border: none;
+    border-bottom: 1px solid red;
+    padding: 12px 20px;
+    marging:8px 0;
+    box-sizing: border-box;
+    background: transparent;
+    width: 300px;
+    align : middle;
+    color: #ffffff;
+    font-size: 15px;
+    padding-left: 50px;
+}
+input[type=text] {
+    border: none;
+    border-bottom: 1px solid red;
+    padding: 12px 20px;
+    marging:8px 0;
+    box-sizing: border-box;
+    background: transparent;
+    width: 300px;
+    align : middle;
+    color: #ffffff;
+    font-size: 15px;
+    padding-left: 50px;
+}
+input[type=email] {
+    border: none;
+    border-bottom: 1px solid red;
+    padding: 12px 20px;
+    marging:8px 0;
+    box-sizing: border-box;
+    background: transparent;
+    width: 300px;
+    align : middle;
+    color: #ffffff;
+    font-size: 15px;
+}
+input[type=number] {
+    border: none;
+    border-bottom: 1px solid red;
+    padding: 12px 20px;
+    marging:8px 0;
+    box-sizing: border-box;
+    background: transparent;
+    width: 300px;
+    align : middle;
+    color: #ffffff;
+    font-size: 15px;
+}
+.bar .bar-stable{
+  background-color: transparent;
 }

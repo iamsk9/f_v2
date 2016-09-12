@@ -1,7 +1,7 @@
-<ion-view view-title="Categories">
-  <ion-content>
-    <div ng-repeat="category in categories" ng-click="selectCategory(category.id)">
-        <img src={{category.image}} style="width : 100% ; height : 100%" ng-click="clicked(category.id)"><br><br>
+<ion-view view-title="Categories" hide-nav-bar="false" style="background: url(../../img/background.png)">
+  <ion-content has-header="true">
+      <div ng-repeat="category in categories" ng-click="selectCategory(category.id)"><br><br>
+        <img src={{category.image}} width=100%  height="250px" ng-click="clicked(category.id)"><br>
       </div>
   </ion-content>
 </ion-view>

@@ -1,4 +1,4 @@
-<ion-view title="Register">
+<ion-view title="Register" style="background: url(../../img/background.png)">
   <ion-content padding="true">
     <div class="hero no-header flat">
       <div class="content">
@@ -6,45 +6,43 @@
           <center><h1 id="log">Fresh World</h1></center>
       </div>
     </div>
-    <form ng-submit="doSignUp()">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Full Name</span>
-          <input type="text" ng-model="loginData.fullname">
-        </label><br>
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="text" ng-model="loginData.email">
-        </label><br>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
-        </label><br>
-        <label class="item item-input">
-          <span class="input-label">Phone No</span>
-          <input type="text" ng-model="loginData.phoneno">
-        </label><br>
-        <label class="item item-input">
-          <span class="input-label">Landline No</span>
-          <input type="text" ng-model="loginData.landline">
-        </label><br>
-        <label class="item item-input">
-          <span class="input-label">Address</span>
-          <input type="text" ng-model="loginData.address">
-        </label><br>
-        <label class="item">
-          <button class="button button-block button-assertive" type="submit">Sign Up</button>
-        </label>
-        <br>
-          <center><a href="#/app/login" ng-click="goToLogin()">Already a user?Login Here...</a></center><br>
-        <label class="item">
-          <div class="button-bar social-login">
-                  <button class="button button-small button-border icon-left ion-social-google button-assertive">Google+</button>
-                  <button class="button button-small button-border icon-left ion-social-twitter button-calm">Twitter</button>
-                  <button class="button button-small button-border icon-left ion-social-facebook button-positive">Facebook</button>
-          </div>
-        </label>
+    <form name="userForm" ng-submit="doSignUp()">
+    <div class="list">
+    <div class="inner-addon left-addon">
+      <i class="glyphicon glyphicon-user" style="color:white"></i>
+        <input type="text" name="fullname" placeholder="fullname" ng-pattern="/^[a-zA-Z]*$/" ng-model="loginData.fullname" required>
+     </div>
+        <p style="font-size:12px" ng-show="userForm.fullname.$error.pattern">name in alphabets only.</p><br>
+      <div class="inner-addon left-addon">
+          <i class="glyphicon glyphicon-envelope" style="color:white"></i>
+          <input type="text" name="email" placeholder="Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="loginData.email" required>
+    </div>
+      <p style="font-size:12px" ng-show="userForm.email.$error.pattern">Invalid Email.</p><br>
+      <div class="inner-addon left-addon">
+       <i class="glyphicon glyphicon-lock" style="color:white;size:50px"></i>
+        <input type="password" name="passsword" placeholder="password" ng-minlength="5" ng-model="loginData.password" required>
       </div>
-    </form>
+     <p style="font-size:12px" ng-show="userForm.passsword.$error.minlength">password too short.</p><br>
+     <div class="inner-addon left-addon">
+        <i class="glyphicon glyphicon-phone" style="color:white"></i>
+        <input type="text" name="phoneno" ng-minlength="10" placeholder="Mobile" ng-pattern="/^[0-9]+$/" ng-model="loginData.phoneno" required>
+      </div>
+      <p style="font-size:12px" ng-show="userForm.phoneno.$error.pattern">Number in digits only.</p>
+      <p style="font-size:12px" ng-show="userForm.phoneno.$error.minlength">Number is atleast 10 digits.</p><br>
+      <div class="inner-addon left-addon">
+        <i class="glyphicon glyphicon-phone-alt" style="color:white"></i>
+        <input type="text" placeholder="Landline" ng-model="loginData.landline">
+      </div>
+    <br>
+    <div class="inner-addon left-addon">
+      <i class="glyphicon glyphicon-envelope" style="color:white"></i>
+        <input type="text" placeholder="address" ng-model="loginData.address">
+    </div>
+    <br>
+        <center><button class="button button-block button-assertive" id="sub" type="submit">Sign Up</button></center>
+      <br>
+        <center><a href="#/app/login" ng-click="goToLogin()">Already a user?Login Here...</a></center><br>
+    </div>
+  </form>
   </ion-content>
 </ion-view>
