@@ -93,14 +93,21 @@ angular.module('starter.controllers', [])
   };
 
   $scope.decrement = function(object){
+    if(object.quantity-1!=0){
     object.quantity = object.quantity - 1;
     object.qcost = object.qcost - object.cost;
     $scope.total = $scope.total - object.cost;
+  }else{
+    var alertPopup = $ionicPopup.alert({
+      title: 'OOPS!',
+      template: 'Quantity cannot be below zero.'
+    });
+  }
   };
 
   $scope.proceed_payment = function(){
-    console.log($scope.cart_items);
-  }
+    
+  };
 })
 .controller('OrderCtrl', function($scope, Backand, $http, $ionicPopup, $state, $location) {
   $scope.order = function(){

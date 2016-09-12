@@ -33,7 +33,6 @@ angular.module('starter.services', [])
 
     saveItems = function (data) {
       savedItems = data;
-      console.log(data);
     };
 
     getItems = function(id){
@@ -41,7 +40,6 @@ angular.module('starter.services', [])
     };
 
     getSavedItems = function(){
-      console.log(savedItems);
       return savedItems;
     };
 
@@ -51,9 +49,6 @@ angular.module('starter.services', [])
       for(i=0;i<selected.length;i++){
         data = data.concat($filter('filter')(savedItems, {id:selected[i]}));
       }
-      console.log(savedItems);
-      console.log(selected);
-      console.log(data);
       return data;
     };
 
@@ -63,7 +58,6 @@ angular.module('starter.services', [])
           selected.splice(index, 1);
       else
           selected.push(id);
-      console.log(selected);
     };
 
     return {
