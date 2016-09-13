@@ -1,0 +1,20 @@
+<ion-view view-title="Offers" style="background: url(img/background.png)">
+  <ion-content padding="true"><br>
+    <div ng-repeat="offer in offers">
+      <div ng-if="offer.cat_id">
+          <img class="full-image" src={{offer.filename}}>
+          <center><p>
+            {{offer.item_name}}
+          </p></center>
+          <div class="cost"><p>
+            RS.{{offer.cost}}
+          </p>
+          </div>
+          <div class="rating"><p>
+            {{offer.rating}}
+          </p>
+          </div><br>
+        </div>
+      </div><br><br><br>
+  </ion-content>
+</ion-view>

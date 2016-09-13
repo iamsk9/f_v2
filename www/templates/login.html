@@ -1,20 +1,20 @@
-<ion-view title="Login" style="background: url(../../img/background.png)">
+<ion-view title="Login" style="background: url(img/background.png)">
   <ion-content padding="true">
     <div class="hero no-header flat">
             <div class="content">
                 <div class="app-icon"></div>
-                <center><h1 id="log">Fresh World</h1></center>
+                <center><h1 id="log" style="color:white">Fresh World</h1></center>
             </div>
         </div><br>
     <form ng-submit="vm.doLogin()">
       <div class="list">
       <div class="inner-addon left-addon">
         <i class="glyphicon glyphicon-user" style="color:white"></i>
-     <center><input type="text" ng-model="vm.loginData.email" placeholder="Username"></center>
+     <center><input type="text" ng-model="vm.loginData.email" placeholder="Email"></center>
    </div><br>
       <div class="inner-addon left-addon">
       <i class="glyphicon glyphicon-lock" style="color:white;size:50px"></i>
-      <center><input type="password" ng-model="loginData.password" placeholder="Password"></center><br><br>
+      <center><input type="password" ng-model="vm.loginData.password" placeholder="Password"></center><br><br>
     </div>
         <center><button class="button button-block button-assertive" id="sub" type="submit">Log in</button></center>
       </div>

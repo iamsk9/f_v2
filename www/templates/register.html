@@ -1,18 +1,18 @@
-<ion-view title="Register" style="background: url(../../img/background.png)">
+<ion-view title="Register" style="background: url(img/background.png)">
   <ion-content padding="true">
     <div class="hero no-header flat">
       <div class="content">
           <div class="app-icon"></div>
-          <center><h1 id="log">Fresh World</h1></center>
+          <center><h1 id="log" style="color:white">Fresh World</h1></center>
       </div>
     </div>
     <form name="userForm" ng-submit="doSignUp()">
     <div class="list">
     <div class="inner-addon left-addon">
       <i class="glyphicon glyphicon-user" style="color:white"></i>
-        <input type="text" name="fullname" placeholder="fullname" ng-pattern="/^[a-zA-Z]*$/" ng-model="loginData.fullname" required>
+        <input type="text" name="fullname" placeholder="fullname" ng-pattern="/^[a-zA-Z ]*$/" ng-model="loginData.fullname" required>
      </div>
-        <p style="font-size:12px" ng-show="userForm.fullname.$error.pattern">name in alphabets only.</p><br>
+        <p style="font-size:12px" ng-show="userForm.fullname.$error.pattern">Name in alphabets only.</p><br>
       <div class="inner-addon left-addon">
           <i class="glyphicon glyphicon-envelope" style="color:white"></i>
           <input type="text" name="email" placeholder="Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="loginData.email" required>

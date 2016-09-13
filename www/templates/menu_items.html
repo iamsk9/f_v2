@@ -1,5 +1,5 @@
-<ion-view view-title="List" style="background: url(../../img/background.png)">
-  <ion-content><br>
+<ion-view view-title="List" style="background: url(img/background.png)">
+  <ion-content padding="true"><br>
     <div ng-repeat="list_item in list_items">
       <div ng-if="list_item.cat_id == my_cat">
           <img class="full-image" src={{list_item.filename}}>
@@ -15,7 +15,7 @@
           </p>
           </div><br>
             <div class="add_cart">
-            <ion-checkbox style="color:white" class="checkbox-positive" ng-click="clicked(list_item.item_id)">Add to Cart</ion-checkbox>
+            <ion-checkbox style="color:white" class="checkbox-positive" ng-click="clicked(list_item.item_id)">Add to cart</ion-checkbox>
             </div>
         </div>
       </div><br><br><br>

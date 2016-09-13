@@ -11,6 +11,10 @@
     width: 125px;
 }
 
+.glyphicon{
+  color: white;
+}
+
 .inner-addon {
   position: relative;
 }
@@ -32,10 +36,6 @@
 
 
 
-body {
-  margin: 10px;
-}
-
 h1
 {
   color : white;
@@ -54,12 +54,17 @@ h1
   float: right;
 }
 
-#close{
-  padding-left: 3px;
+#add{
+  padding-right: 5px;
 }
 
-.increment{
-  align-items: center;
+#close{
+  padding-left: 5px;
+}
+
+#counter{
+  font-size: 22px;
+  padding: 10px;
 }
 
 p{
@@ -68,6 +73,10 @@ p{
 
 p{
   color:white;
+}
+
+.item_name{
+  font-size: 20px;
 }
 
 .item{

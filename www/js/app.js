@@ -66,7 +66,7 @@ var sampleApp = angular.module('starter', ['ionic', 'starter.controllers', 'back
       views: {
         'menuContent': {
           templateUrl: 'templates/order.html',
-          controller: 'OrderCtrl'
+          controller: 'CheckoutCtrl'
         }
       }
     })
@@ -85,6 +85,15 @@ var sampleApp = angular.module('starter', ['ionic', 'starter.controllers', 'back
         'menuContent': {
           templateUrl: 'templates/checkout.html',
           controller: 'CheckoutCtrl'
+        }
+      }
+    })
+    .state('app.offers', {
+      url: '/offers',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/offers.html',
+          controller: 'OffersCtrl'
         }
       }
     });

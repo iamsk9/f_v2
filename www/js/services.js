@@ -18,10 +18,16 @@ angular.module('starter.services', [])
     var baseUrl = '/1/objects/';
     var objectName = 'items/';
     var selected = [];
+    var id;
 
     function getUrl() {
       return Backand.getApiUrl() + baseUrl + objectName;
     }
+
+    saveId = function(data){
+      id = data;
+      console.log(id);
+    };
 
     saveCategory = function (data) {
       savedCategory = data;
@@ -45,11 +51,26 @@ angular.module('starter.services', [])
       return savedItems;
     };
 
+    function getOrderUrl(objectName) {
+      return Backand.getApiUrl() + baseUrl + objectName;
+    }
+
+    placeOrder = function(data, item){
+      data.user_id = id;
+      data.cost = item.cost;
+      data.quantity = item.quantity;
+      data.status = 0;
+      console.log(item.item_id);
+      data.item_id = item.item_id;
+      console.log(data);
+      return $http.post(getOrderUrl('orders/'), data);
+  };
+
     getSelectedItems = function(){
       var i;
       var data = [];
       for(i=0;i<selected.length;i++){
-        data = data.concat($filter('filter')(savedItems, {id:selected[i]}));
+        data = data.concat($filter('filter')(savedItems, {item_id:selected[i]}));
       }
       console.log(savedItems);
       console.log(selected);
@@ -69,6 +90,8 @@ angular.module('starter.services', [])
     return {
       saveCategory: saveCategory,
       saveItems: saveItems,
+      saveId: saveId,
+      placeOrder: placeOrder,
       getSavedCategory: getSavedCategory,
       getItems: getItems,
       getSelectedItems: getSelectedItems,
@@ -94,7 +117,42 @@ angular.module('starter.services', [])
     return $http.post(getUrl(), data);
   };
 
+  logining = function (data) {
+    return $http({
+            method: 'GET',
+            url: getUrl(),
+            params: {
+                filter: JSON.stringify([
+                  {fieldName: "email", operator: "equals", value: data.email}
+                ])
+            }
+        }).then(function (response) {
+          console.log(response);
+            if (response.data && response.data.data && response.data.data.length == 1){
+              console.log(response.data.data[0].id);
+                return response.data.data[0];
+            }
+        });
+  };
+
   return {
     addUser: addUser,
+    logining: logining
   };
+})
+.service('validateService', function ($rootScope, $q, $ionicPopup) {
+  function emailValidate(name){
+         pattern = /^[a-z0-9_.]+@[a-z]+.[a-z]+$/i;
+         if (!pattern.test(name) || name==null) {
+           var invaliPopup = $ionicPopup.alert({
+             title: 'OOPS!',
+             template: 'Invalid Email'
+           });
+           return false;
+         }
+         return true;
+       }
+       return{
+         emailValidate:emailValidate
+       }
 });
