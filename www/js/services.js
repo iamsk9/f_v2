@@ -70,7 +70,7 @@ angular.module('starter.services', [])
       var i;
       var data = [];
       for(i=0;i<selected.length;i++){
-        data = data.concat($filter('filter')(savedItems, {item_id:selected[i]}));
+        data = data.concat($filter('filter')(savedItems, {id:selected[i]}));
       }
       console.log(savedItems);
       console.log(selected);
