@@ -17,11 +17,16 @@ angular.module('starter.services', [])
     var savedItems = [];
     var baseUrl = '/1/objects/';
     var objectName = 'items/';
+    var offerName = 'offers/';
     var selected = [];
     var id;
 
     function getUrl() {
       return Backand.getApiUrl() + baseUrl + objectName;
+    }
+
+    function getOfferUrl() {
+      return Backand.getApiUrl() + baseUrl + offerName;
     }
 
     saveId = function(data){
@@ -48,6 +53,10 @@ angular.module('starter.services', [])
 
     getItems = function(id){
       return $http.get(getUrl());
+    };
+
+    getOffers = function(id){
+      return $http.get(getOfferUrl());
     };
 
     getSavedItems = function(){
@@ -98,6 +107,7 @@ angular.module('starter.services', [])
       saveId: saveId,
       loginingOut:loginingOut,
       placeOrder: placeOrder,
+      getOffers:getOffers,
       getSavedCategory: getSavedCategory,
       getItems: getItems,
       getSelectedItems: getSelectedItems,

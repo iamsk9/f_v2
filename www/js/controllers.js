@@ -199,7 +199,7 @@ angular.module('starter.controllers', [])
   };
 })
 .controller('OffersCtrl', function($scope, $ionicPopup, $rootScope, itemsService, $state, $ionicNavBarDelegate) {
-  $scope.offers = [
+  /*$scope.offers = [
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f1.jpg',item_name:'Apple',id:1,item_id:'1',cost:20,rating:4.5,qcost:20,quantity:1},
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f2.jpg',item_name:'Oranges',id:2,item_id:'2',cost:20,rating:4.5,qcost:20,quantity:1},
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f3.jpg',item_name:'Watermelon',id:3,item_id:'3',cost:20,rating:4.5,qcost:20,quantity:1},
@@ -208,7 +208,12 @@ angular.module('starter.controllers', [])
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f6.jpg',item_name:'Pine Apple',id:6,item_id:'6',cost:20,rating:4.5,qcost:20,quantity:1},
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f7.jpg',item_name:'Grapes',id:7,item_id:'7',cost:20,rating:4.5,qcost:20,quantity:1},
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f8.jpg',item_name:'Guava',id:8,item_id:'8',cost:20,rating:4.5,qcost:20,quantity:1}
-    ];
+    ];*/
 
+    itemsService.getOffers()
+    .then(function(result){
+      $scope.offers = result.data.data;
+//      itemsService.saveItems(result.data.data);
+    });
 })
 ;
