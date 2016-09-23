@@ -29,6 +29,10 @@ angular.module('starter.services', [])
       console.log(id);
     };
 
+    loginingOut = function(){
+      selected = [];
+    };
+
     saveCategory = function (data) {
       savedCategory = data;
     };
@@ -63,6 +67,7 @@ angular.module('starter.services', [])
       console.log(item.item_id);
       data.item_id = item.item_id;
       console.log(data);
+      console.log(data.item_id);
       return $http.post(getOrderUrl('orders/'), data);
   };
 
@@ -91,6 +96,7 @@ angular.module('starter.services', [])
       saveCategory: saveCategory,
       saveItems: saveItems,
       saveId: saveId,
+      loginingOut:loginingOut,
       placeOrder: placeOrder,
       getSavedCategory: getSavedCategory,
       getItems: getItems,

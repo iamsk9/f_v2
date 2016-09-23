@@ -18,6 +18,8 @@ angular.module('starter.controllers', [])
   function logout(){
     $rootScope.isLogin = false;
     $rootScope.isInitial = true;
+    $rootScope.checkcart = false;
+    itemsService.loginingOut();
     $ionicNavBarDelegate.showBackButton(false);
     $state.go('app.login');
   }
@@ -105,6 +107,8 @@ angular.module('starter.controllers', [])
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f8.jpg',item_name:'Guava',id:8,item_id:'8',cost:20,rating:4.5,qcost:20,quantity:1}
     ];*/
 
+    $rootScope.checkcart = false;
+
     itemsService.getItems()
     .then(function(result){
       $scope.list_items = result.data.data;
@@ -121,7 +125,7 @@ angular.module('starter.controllers', [])
       $state.go('app.checkout');
     };
 })
-.controller('CheckoutCtrl', function($scope, Backand, $http, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
+.controller('CheckoutCtrl', function($scope, Backand, $http, $rootScope, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
 
   function getCost(){
     $scope.cart_items = itemsService.getSelectedItems();
@@ -179,14 +183,18 @@ angular.module('starter.controllers', [])
   $scope.order = function(){
 
     for(i=0;i<$scope.cart_items.length;i++){
-      itemsService.placeOrder($scope.object, $scope.cart_items[i]);
-      $timeout(function () {
-      }, 500);
+      console.log($scope.cart_items[i]);
+      itemsService.placeOrder($scope.object, $scope.cart_items[i])
+      .then(function(){
+        console.log("placed");
+      });
     }
     var alertPopup = $ionicPopup.alert({
      title: 'Thank You...',
      template: "Your Order has been placed.<br>Get Ready to enjoy."
    });
+   $rootScope.checkcart = false;
+   itemsService.loginingOut();
    $state.go('app.categories');
   };
 })
