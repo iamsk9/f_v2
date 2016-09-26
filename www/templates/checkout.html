@@ -5,6 +5,7 @@
     <div class="list card">
       <div ng-repeat="list_item in cart_items">
         <div class="item item-body">
+          <img src={{list_item.filename}} width="150px" height="150px" style="float:left;">
           <div class="cost">
             <input type="image" src="img/android-close.png" name="image" width="18px" height="18px" ng-click="clicked(list_item.id)">
           </div>
@@ -12,7 +13,7 @@
             <div class="item_name">
               <strong>{{list_item.item_name}}</strong>
             </div>
-        </center>
+          </center>
           <div class="increment">
             <center>
             <input type="image" src="img/android-add.png" name="image" width="18px" height="18px" id="add" ng-click="increment(list_item)">

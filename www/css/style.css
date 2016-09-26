@@ -33,7 +33,10 @@
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
 
-
+.ion-android-cart{
+  float: right;
+  font-size: 30px;
+}
 
 h1
 {
@@ -113,6 +116,7 @@ input[type=password] {
     font-size: 15px;
     padding-left: 50px;
 }
+
 input[type=text] {
     border: none;
     border-bottom: 1px solid red;
@@ -126,6 +130,7 @@ input[type=text] {
     font-size: 15px;
     padding-left: 50px;
 }
+
 input[type=email] {
     border: none;
     border-bottom: 1px solid red;
@@ -138,6 +143,7 @@ input[type=email] {
     color: #ffffff;
     font-size: 15px;
 }
+
 input[type=number] {
     border: none;
     border-bottom: 1px solid red;
@@ -150,6 +156,7 @@ input[type=number] {
     color: #ffffff;
     font-size: 15px;
 }
+
 .bar .bar-stable{
   background-color: transparent;
 }
