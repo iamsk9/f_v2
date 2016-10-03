@@ -66,7 +66,7 @@ angular.module('starter.controllers', [])
 //}
   }
 })
-.controller('CategoryCtrl', function($scope, itemsService, $state, $ionicNavBarDelegate, $rootScope) {
+.controller('CategoryCtrl', function($scope,$rootScope, itemsService, $state, $ionicNavBarDelegate, $rootScope) {
   $scope.categories = [
     { image: 'img/p1.jpg', name: 'Fruits',id: 1 },
     { image: 'img/p2.jpg', name: 'Vegetables',id: 2 }
@@ -84,6 +84,11 @@ angular.module('starter.controllers', [])
     $state.go('checkout');
     $ionicNavBarDelegate.showBackButton(false);
   };
+
+  $rootScope.goCheckout = function () {
+  $state.go('app.checkout');
+  };
+
 })
 .controller('RegisterCtrl', function($scope, $state, $ionicNavBarDelegate, LoginService, $ionicPopup) {
   $scope.loginData = {};
@@ -138,7 +143,7 @@ angular.module('starter.controllers', [])
 .controller('CheckoutCtrl', function($scope, Backand, $http, $rootScope, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
 
   function getCost(){
-    $scope.cart_items = itemsService.getSelectedItems();
+    $scope.cart_items = itemsService.getSelectedItems($rootScope.my_cat);
     console.log($scope.cart_items);
     var sum = 0;
     for(i=0;i<$scope.cart_items.length;i++)
@@ -171,24 +176,24 @@ angular.module('starter.controllers', [])
   };
 
   $scope.increment = function(object){
-    object.quantity = object.quantity + 1;
-    object.qcost = parseInt(object.qcost) + parseInt(object.cost);
-    $scope.total = $scope.total + parseInt(object.cost);
-  };
+  object.quantity = parseInt(object.quantity) + 1;
+  object.qcost = parseInt(object.qcost) + parseInt(object.cost);
+  $scope.total = $scope.total + parseInt(object.cost);
+};
 
-  $scope.decrement = function(object){
-    if (object.quantity-1!=0) {
-      object.quantity = object.quantity - 1;
-      object.qcost = parseInt(object.qcost) - parseInt(object.cost);
-      $scope.total = $scope.total - parseInt(object.cost);
-    }
-    else {
-      var alertPopup = $ionicPopup.alert({
-       title: 'OOPS',
-       template: "Quantity cannot be negative"
-     });
-    }
-  };
+$scope.decrement = function(object){
+  if (object.quantity-1!=0) {
+    object.quantity = parseInt(object.quantity) - 1;
+    object.qcost = parseInt(object.qcost) - parseInt(object.cost);
+    $scope.total = $scope.total - parseInt(object.cost);
+  }
+  else {
+    var alertPopup = $ionicPopup.alert({
+     title: 'OOPS',
+     template: "Quantity cannot be negative"
+   });
+  }
+};
   $scope.object = {};
   $scope.order = function(){
     /*
