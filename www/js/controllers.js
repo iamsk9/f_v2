@@ -1,14 +1,17 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope,LoginService, itemsService, validateService, $ionicModal, $timeout, $state, $ionicNavBarDelegate,Backand, $http, $rootScope, $ionicPopup) {
+.controller('AppCtrl', function($scope,LoginService, $cordovaGeolocation, itemsService, validateService, $ionicModal, $timeout, $state, $ionicNavBarDelegate,Backand, $http, $rootScope, $ionicPopup) {
 
   var vm = this;
   vm.doLogin  = doLogin;
   vm.goToRegister = goToRegister;
   vm.logout = logout;
 
-  $rootScope.isLogin = false;
-  $rootScope.isInitial = true;
+  /*$rootScope.isLogin = false;
+  $rootScope.isInitial = true;*/
+
+  $rootScope.isLogin = true;
+  $rootScope.isInitial = false;
 
   function goToRegister(){
     $ionicNavBarDelegate.showBackButton(false);
@@ -18,12 +21,15 @@ angular.module('starter.controllers', [])
   function logout(){
     $rootScope.isLogin = false;
     $rootScope.isInitial = true;
+    $rootScope.checkcart = false;
+    itemsService.loginingOut();
     $ionicNavBarDelegate.showBackButton(false);
     $state.go('app.login');
   }
 
 
   function doLogin() {
+    /*
   if (validateService.emailValidate(vm.loginData.email)) {
     LoginService.logining(vm.loginData)
     .then(function(result){
@@ -52,12 +58,12 @@ angular.module('starter.controllers', [])
         template: 'Invalid Emaid Id or Password'
       });
     }
-  });/*
+  });*/
   $rootScope.isLogin = true;
   $rootScope.isInitial = false;
   $ionicNavBarDelegate.showBackButton(false);
-  $state.go('app.categories');*/
-}
+  $state.go('app.categories');
+//}
   }
 })
 .controller('CategoryCtrl', function($scope, itemsService, $state, $ionicNavBarDelegate, $rootScope) {
@@ -65,11 +71,17 @@ angular.module('starter.controllers', [])
     { image: 'img/p1.jpg', name: 'Fruits',id: 1 },
     { image: 'img/p2.jpg', name: 'Vegetables',id: 2 }
   ];
+
   $scope.selectCategory = function(id){
     itemsService.saveCategory(id);
     $state.go('app.menu_items');
     $rootScope.my_cat = id;
     console.log($rootScope.my_cat);
+    $ionicNavBarDelegate.showBackButton(false);
+  };
+
+  $scope.moveToCart = function(){
+    $state.go('checkout');
     $ionicNavBarDelegate.showBackButton(false);
   };
 })
@@ -105,6 +117,8 @@ angular.module('starter.controllers', [])
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f8.jpg',item_name:'Guava',id:8,item_id:'8',cost:20,rating:4.5,qcost:20,quantity:1}
     ];*/
 
+    $rootScope.checkcart = false;
+
     itemsService.getItems()
     .then(function(result){
       $scope.list_items = result.data.data;
@@ -121,7 +135,7 @@ angular.module('starter.controllers', [])
       $state.go('app.checkout');
     };
 })
-.controller('CheckoutCtrl', function($scope, Backand, $http, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
+.controller('CheckoutCtrl', function($scope, Backand, $http, $rootScope, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
 
   function getCost(){
     $scope.cart_items = itemsService.getSelectedItems();
@@ -177,17 +191,34 @@ angular.module('starter.controllers', [])
   };
   $scope.object = {};
   $scope.order = function(){
-
+    /*
     for(i=0;i<$scope.cart_items.length;i++){
-      itemsService.placeOrder($scope.object, $scope.cart_items[i]);
-      $timeout(function () {
-      }, 500);
-    }
-    var alertPopup = $ionicPopup.alert({
-     title: 'Thank You...',
-     template: "Your Order has been placed.<br>Get Ready to enjoy."
+      console.log($scope.cart_items[i]);
+      itemsService.placeOrder($scope.object, $scope.cart_items[i])
+      .then(function(){
+        console.log("placed");
+      });
+    }*/
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Note',
+     template: 'Your order cannot be cancelled once you click the ok option'
    });
-   $state.go('app.categories');
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       var alertPopup = $ionicPopup.alert({
+        title: 'Thank You...',
+        template: "Your Order has been placed.<br>Get Ready to enjoy."
+      });
+      $rootScope.checkcart = false;
+      itemsService.loginingOut();
+      $state.go('app.categories');
+      $ionicNavBarDelegate.showBackButton(false);
+     } else {
+       $state.go('app.checkout');
+       $ionicNavBarDelegate.showBackButton(false);
+     }
+   });
   };
 })
 .controller('OffersCtrl', function($scope, $ionicPopup, $rootScope, itemsService, $state, $ionicNavBarDelegate) {
@@ -201,6 +232,10 @@ angular.module('starter.controllers', [])
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f7.jpg',item_name:'Grapes',id:7,item_id:'7',cost:20,rating:4.5,qcost:20,quantity:1},
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f8.jpg',item_name:'Guava',id:8,item_id:'8',cost:20,rating:4.5,qcost:20,quantity:1}
     ];
-
-})
-;
+    /*
+    itemsService.getOffers()
+    .then(function(result){
+      $scope.offers = result.data.data;
+//      itemsService.saveItems(result.data.data);
+    });*/
+});

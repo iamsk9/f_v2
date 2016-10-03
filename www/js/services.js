@@ -17,6 +17,7 @@ angular.module('starter.services', [])
     var savedItems = [];
     var baseUrl = '/1/objects/';
     var objectName = 'items/';
+    var offerName = 'offers/';
     var selected = [];
     var id;
 
@@ -24,9 +25,17 @@ angular.module('starter.services', [])
       return Backand.getApiUrl() + baseUrl + objectName;
     }
 
+    function getOfferUrl() {
+      return Backand.getApiUrl() + baseUrl + offerName;
+    }
+
     saveId = function(data){
       id = data;
       console.log(id);
+    };
+
+    loginingOut = function(){
+      selected = [];
     };
 
     saveCategory = function (data) {
@@ -46,6 +55,10 @@ angular.module('starter.services', [])
       return $http.get(getUrl());
     };
 
+    getOffers = function(id){
+      return $http.get(getOfferUrl());
+    };
+
     getSavedItems = function(){
       console.log(savedItems);
       return savedItems;
@@ -63,6 +76,7 @@ angular.module('starter.services', [])
       console.log(item.item_id);
       data.item_id = item.item_id;
       console.log(data);
+      console.log(data.item_id);
       return $http.post(getOrderUrl('orders/'), data);
   };
 
@@ -70,7 +84,7 @@ angular.module('starter.services', [])
       var i;
       var data = [];
       for(i=0;i<selected.length;i++){
-        data = data.concat($filter('filter')(savedItems, {item_id:selected[i]}));
+        data = data.concat($filter('filter')(savedItems, {id:selected[i]}));
       }
       console.log(savedItems);
       console.log(selected);
@@ -91,7 +105,9 @@ angular.module('starter.services', [])
       saveCategory: saveCategory,
       saveItems: saveItems,
       saveId: saveId,
+      loginingOut:loginingOut,
       placeOrder: placeOrder,
+      getOffers:getOffers,
       getSavedCategory: getSavedCategory,
       getItems: getItems,
       getSelectedItems: getSelectedItems,
