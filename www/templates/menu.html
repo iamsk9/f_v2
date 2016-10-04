@@ -8,6 +8,9 @@
         <button class="button button-icon button-clear ion-navicon" id="but" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-android-cart" ng-show="isLogin" ng-click="goCheckout()" style="float:right;color:white;padding-top:5%;padding-right:5%;size:4px;background:transparent;border:none"></a>
+      </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>

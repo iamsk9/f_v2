@@ -7,16 +7,18 @@ angular.module('starter.controllers', [])
   vm.goToRegister = goToRegister;
   vm.logout = logout;
 
-  /*$rootScope.isLogin = false;
-  $rootScope.isInitial = true;*/
-
-  $rootScope.isLogin = true;
-  $rootScope.isInitial = false;
+  $rootScope.isLogin = false;
+  $rootScope.isInitial = true;
 
   function goToRegister(){
     $ionicNavBarDelegate.showBackButton(false);
     $state.go('app.register');
   }
+
+  $rootScope.goCheckout = function () {
+  $state.go('app.checkout');
+  $ionicNavBarDelegate.showBackButton(false);
+  };
 
   function logout(){
     $rootScope.isLogin = false;
@@ -29,7 +31,6 @@ angular.module('starter.controllers', [])
 
 
   function doLogin() {
-    /*
   if (validateService.emailValidate(vm.loginData.email)) {
     LoginService.logining(vm.loginData)
     .then(function(result){
@@ -58,18 +59,19 @@ angular.module('starter.controllers', [])
         template: 'Invalid Emaid Id or Password'
       });
     }
-  });*/
+  });
   $rootScope.isLogin = true;
   $rootScope.isInitial = false;
-  $ionicNavBarDelegate.showBackButton(false);
-  $state.go('app.categories');
-//}
+  /*$ionicNavBarDelegate.showBackButton(false);
+  $state.go('app.categories');*/
+}
   }
 })
 .controller('CategoryCtrl', function($scope,$rootScope, itemsService, $state, $ionicNavBarDelegate, $rootScope) {
   $scope.categories = [
     { image: 'img/p1.jpg', name: 'Fruits',id: 1 },
-    { image: 'img/p2.jpg', name: 'Vegetables',id: 2 }
+    { image: 'img/p2.jpg', name: 'Vegetables',id: 2 },
+    { image: 'img/p3.jpg', name: 'Leafy Vegetables',id: 3 }
   ];
 
   $scope.selectCategory = function(id){
@@ -84,11 +86,6 @@ angular.module('starter.controllers', [])
     $state.go('checkout');
     $ionicNavBarDelegate.showBackButton(false);
   };
-
-  $rootScope.goCheckout = function () {
-  $state.go('app.checkout');
-  };
-
 })
 .controller('RegisterCtrl', function($scope, $state, $ionicNavBarDelegate, LoginService, $ionicPopup) {
   $scope.loginData = {};
