@@ -25,6 +25,10 @@
   pointer-events: none;
 }
 
+.ion-android-person{
+  float :left;
+}
+
 /* align glyph */
 .left-addon .glyphicon  { left:  0px;}
 .right-addon .glyphicon { right: 0px;}

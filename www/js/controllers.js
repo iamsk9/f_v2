@@ -7,11 +7,8 @@ angular.module('starter.controllers', [])
   vm.goToRegister = goToRegister;
   vm.logout = logout;
 
-  /*$rootScope.isLogin = false;
-  $rootScope.isInitial = true;*/
-
-  $rootScope.isLogin = true;
-  $rootScope.isInitial = false;
+  $rootScope.isLogin = false;
+  $rootScope.isInitial = true;
 
   function goToRegister(){
     $ionicNavBarDelegate.showBackButton(false);
@@ -29,7 +26,7 @@ angular.module('starter.controllers', [])
 
 
   function doLogin() {
-    /*
+
   if (validateService.emailValidate(vm.loginData.email)) {
     LoginService.logining(vm.loginData)
     .then(function(result){
@@ -58,12 +55,13 @@ angular.module('starter.controllers', [])
         template: 'Invalid Emaid Id or Password'
       });
     }
-  });*/
+  });
+  /*
   $rootScope.isLogin = true;
   $rootScope.isInitial = false;
   $ionicNavBarDelegate.showBackButton(false);
-  $state.go('app.categories');
-//}
+  $state.go('app.categories');*/
+}
   }
 })
 .controller('CategoryCtrl', function($scope,$rootScope, itemsService, $state, $ionicNavBarDelegate, $rootScope) {
@@ -143,7 +141,7 @@ angular.module('starter.controllers', [])
 .controller('CheckoutCtrl', function($scope, Backand, $http, $rootScope, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
 
   function getCost(){
-    $scope.cart_items = itemsService.getSelectedItems($rootScope.my_cat);
+    $scope.cart_items = itemsService.getSelectedItems();
     console.log($scope.cart_items);
     var sum = 0;
     for(i=0;i<$scope.cart_items.length;i++)
@@ -196,14 +194,14 @@ $scope.decrement = function(object){
 };
   $scope.object = {};
   $scope.order = function(){
-    /*
+    
     for(i=0;i<$scope.cart_items.length;i++){
       console.log($scope.cart_items[i]);
       itemsService.placeOrder($scope.object, $scope.cart_items[i])
       .then(function(){
         console.log("placed");
       });
-    }*/
+    }
    var confirmPopup = $ionicPopup.confirm({
      title: 'Note',
      template: 'Your order cannot be cancelled once you click the ok option'

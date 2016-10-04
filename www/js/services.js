@@ -80,11 +80,11 @@ angular.module('starter.services', [])
       return $http.post(getOrderUrl('orders/'), data);
   };
 
-  getSelectedItems = function(cat_id){
+  getSelectedItems = function(){
   var i;
   var data = [];
   for(i=0;i<selected.length;i++){
-    data = data.concat($filter('filter')(savedItems, {id:selected[i],cat_id:cat_id}));
+    data = data.concat($filter('filter')(savedItems, {id:selected[i]}));
   }
   console.log(savedItems);
   console.log(data);
