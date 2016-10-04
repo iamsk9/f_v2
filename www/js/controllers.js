@@ -60,9 +60,11 @@ angular.module('starter.controllers', [])
       });
     }
   });
+
   $rootScope.isLogin = true;
   $rootScope.isInitial = false;
-  /*$ionicNavBarDelegate.showBackButton(false);
+  /*
+  $ionicNavBarDelegate.showBackButton(false);
   $state.go('app.categories');*/
 }
   }
@@ -140,7 +142,7 @@ angular.module('starter.controllers', [])
 .controller('CheckoutCtrl', function($scope, Backand, $http, $rootScope, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
 
   function getCost(){
-    $scope.cart_items = itemsService.getSelectedItems($rootScope.my_cat);
+    $scope.cart_items = itemsService.getSelectedItems();
     console.log($scope.cart_items);
     var sum = 0;
     for(i=0;i<$scope.cart_items.length;i++)
@@ -201,6 +203,7 @@ $scope.decrement = function(object){
         console.log("placed");
       });
     }*/
+
    var confirmPopup = $ionicPopup.confirm({
      title: 'Note',
      template: 'Your order cannot be cancelled once you click the ok option'
