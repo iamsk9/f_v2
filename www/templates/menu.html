@@ -9,7 +9,8 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <a class="button button-icon button-clear ion-android-cart" ng-show="isLogin" ng-click="goCheckout()" style="float:right;color:white;padding-top:5%;padding-right:5%;size:4px;background:transparent;border:none"></a>
+      <input type="image" src="img/offer.png" name="image" width="36px" height="36px" ng-show="isLogin" ng-click="gotoOffers()">
+              <a class="button button-icon button-clear ion-android-cart" ng-show="isLogin" ng-click="goCheckout()" style="float:right;color:white;padding-top:5%;padding-right:5%;size:4px;background:transparent;border:none"></a>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>

@@ -22,9 +22,9 @@ var sampleApp = angular.module('starter', ['ionic', 'starter.controllers', 'back
   });
 })
 .config(function(BackandProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
-  BackandProvider.setAppName('freshwordl');
-  BackandProvider.setSignUpToken('8fdf0d5d-7a3a-4f59-9fdb-adbdfb15001a');
-  BackandProvider.setAnonymousToken('18049397-098a-4dc5-b258-c923f2e8ae34');
+  BackandProvider.setAppName('freshworld');
+  BackandProvider.setSignUpToken('7b9e3550-c67a-4282-8746-1e3a36820872');
+  BackandProvider.setAnonymousToken('dc4a9b54-fdd9-4ec2-8dc5-21e13049f4b2');
 
   $stateProvider
 
@@ -85,6 +85,15 @@ var sampleApp = angular.module('starter', ['ionic', 'starter.controllers', 'back
         'menuContent': {
           templateUrl: 'templates/checkout.html',
           controller: 'CheckoutCtrl'
+        }
+      }
+    })
+    .state('app.allitems', {
+      url: '/allitems',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/allitems.html',
+          controller: 'AllitemsCtrl'
         }
       }
     })

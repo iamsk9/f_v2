@@ -12,9 +12,8 @@ angular.module('starter.services', [])
   })
 
   .service('itemsService', function ($http, Backand, $filter) {
-
-    var savedCategory;
     var savedItems = [];
+    var savedCategory;
     var baseUrl = '/1/objects/';
     var objectName = 'items/';
     var offerName = 'offers/';
@@ -36,6 +35,8 @@ angular.module('starter.services', [])
 
     loginingOut = function(){
       selected = [];
+      savedItems = [];
+      data = [];
     };
 
     saveCategory = function (data) {
@@ -68,29 +69,36 @@ angular.module('starter.services', [])
       return Backand.getApiUrl() + baseUrl + objectName;
     }
 
-    placeOrder = function(data, item){
+   /* placeOrder = function(data, item){
+      for(var i=0;i<item.length;i++)
+    {
       data.user_id = id;
-      data.cost = item.cost;
-      data.quantity = item.quantity;
+      data.cost = item[i].cost;
+      data.quantity = item[i].quantity;
       data.status = 0;
-      console.log(item.item_id);
-      data.item_id = item.item_id;
-      console.log(data);
-      console.log(data.item_id);
+      data.item_id = item[i].id;
       return $http.post(getOrderUrl('orders/'), data);
-  };
-
+    }
+  };*/
   getSelectedItems = function(){
-  var i;
   var data = [];
-  for(i=0;i<selected.length;i++){
-    data = data.concat($filter('filter')(savedItems, {id:selected[i]}));
-  }
+  var i,k=0;
   console.log(savedItems);
   console.log(data);
+  for(i=0;i<selected.length;i++){
+    //data = data.concat($filter('filter')(savedItems, {id:selected[i]}));
+    for(var j=0;j<savedItems.length;j++)
+     if(selected[i] == savedItems[j].id)
+       {
+         data[k] = savedItems[j];
+         k++;
+       }
+  }
+  k=0;
+  console.log(data);
   return data;
-
 };
+
 
     selectedItem = function (id) {
       var index = selected.indexOf(id);
@@ -106,7 +114,7 @@ angular.module('starter.services', [])
       saveItems: saveItems,
       saveId: saveId,
       loginingOut:loginingOut,
-      placeOrder: placeOrder,
+      //placeOrder: placeOrder,
       getOffers:getOffers,
       getSavedCategory: getSavedCategory,
       getItems: getItems,
