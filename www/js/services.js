@@ -20,6 +20,10 @@ angular.module('starter.services', [])
     var selected = [];
     var id;
 
+    getUserDetails = function(id){
+      return $http.get(getUserUrl('user/'));
+    }
+
     function getUrl() {
       return Backand.getApiUrl() + baseUrl + objectName;
     }
@@ -28,14 +32,17 @@ angular.module('starter.services', [])
       return Backand.getApiUrl() + baseUrl + offerName;
     }
 
+     function getUserUrl(url) {
+      return Backand.getApiUrl() + baseUrl + url;
+    }
+
+
     saveId = function(data){
       id = data;
       console.log(id);
     };
 
     loginingOut = function(){
-      selected = [];
-      savedItems = [];
       data = [];
     };
 
@@ -120,7 +127,8 @@ angular.module('starter.services', [])
       getItems: getItems,
       getSelectedItems: getSelectedItems,
       selectedItem: selectedItem,
-      getSavedItems: getSavedItems
+      getSavedItems: getSavedItems,
+      getUserDetails : getUserDetails
     };
 })
 .service('LoginService', function ($http, Backand) {

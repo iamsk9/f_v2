@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
 
   $rootScope.isLogin = false;
   $rootScope.isInitial = true;
-
+  $rootScope.checkvalue ={};
   function goToRegister(){
     $ionicNavBarDelegate.showBackButton(false);
     $state.go('app.register');
@@ -27,6 +27,19 @@ angular.module('starter.controllers', [])
 
 
   function logout(){
+    //for(var i=0;i<$rootScope.list_items.length;i++)
+    /*{
+    console.log($rootScope.list_items[i].checked);
+     if($rootScope.list_items[i].checked == true)
+        $rootScope.list_items[i].checked = false;
+    }*/
+    //$rootScope.list = false;
+    /*for(var i=0;i<$rootScope.list_items.length;i++)
+    {
+      console.log($rootScope.checkvalue.list_items.item_name);
+     if($rootScope.checkvalue.list_items.item_name == true)
+        $rootScope.checkvalue.list_items.item_name = false;
+    }*/
     $rootScope.isLogin = false;
     $rootScope.isInitial = true;
     $rootScope.checkcart = false;
@@ -44,6 +57,7 @@ angular.module('starter.controllers', [])
       $rootScope.isLogin = true;
       $rootScope.isInitial = false;
       if(vm.loginData.password == result.password){
+        $rootScope.user_id = result.id;
         itemsService.saveId(result.id);
       var alertPopup = $ionicPopup.alert({
         title: 'Welcome!',
@@ -135,9 +149,9 @@ angular.module('starter.controllers', [])
 
     $rootScope.checkcart = false;
 
-    /*itemsService.getItems()
+    itemsService.getItems()
     .then(function(result){
-      $scope.list_items = result.data.data;
+      $rootScope.list_items = result.data.data;
       itemsService.saveItems(result.data.data);
     });
 
@@ -146,10 +160,11 @@ angular.module('starter.controllers', [])
       itemsService.selectedItem(id);
     };
 
+
     $scope.place_order = function () {
       $ionicNavBarDelegate.showBackButton(false);
       $state.go('app.checkout');
-    };*/
+    };
 })
 .controller('AllitemsCtrl', function($scope, $ionicPopup, $rootScope, itemsService, $state, $ionicNavBarDelegate) {
   /*$scope.list_items = [
@@ -162,9 +177,12 @@ angular.module('starter.controllers', [])
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f7.jpg',item_name:'Grapes',id:7,item_id:'7',cost:20,rating:4.5,qcost:20,quantity:1},
       {cat_id:'1',filename:'https://files.backand.io/freshwordl/f8.jpg',item_name:'Guava',id:8,item_id:'8',cost:20,rating:4.5,qcost:20,quantity:1}
     ];*/
+
+    $rootScope.checkcart = false;
+
     itemsService.getItems()
     .then(function(result){
-      $scope.list_items = result.data.data;
+      $rootScope.list_items = result.data.data;
       itemsService.saveItems(result.data.data);
     });
 
@@ -177,10 +195,12 @@ angular.module('starter.controllers', [])
       $ionicNavBarDelegate.showBackButton(false);
       $state.go('app.checkout');
     };
+
+
 })
 .controller('CheckoutCtrl', function($scope, Backand, $http, $rootScope, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
 
-  
+
   function getCost(){
     $scope.cart_items = itemsService.getSelectedItems();
     console.log($scope.cart_items);
@@ -235,7 +255,6 @@ $scope.decrement = function(object){
 };
   $scope.object = {};
   $scope.order = function(object){
-
        var baseUrl = '/1/objects/';
        var objectName = 'items/';
 
@@ -250,7 +269,8 @@ $scope.decrement = function(object){
     cost : item.cost,
     name : $scope.object.name,
     email : $scope.object.eamil,
-    phoneno : $scope.object.phoneno
+    phoneno : $scope.object.phoneno,
+    status : 0
   };
 
   $http.get(getOrderUrl('items/')).then(function(result){
@@ -278,12 +298,12 @@ $scope.decrement = function(object){
       //console.log(q);
     });
 
- 
 
-  $http.post(getOrderUrl('orders/'),individual_items) 
-  .success(function(data) { 
-    if (data=='err'){ 
-      console.log("oops"); 
+
+  $http.post(getOrderUrl('orders/'),individual_items)
+  .success(function(data) {
+    if (data=='err'){
+      console.log("oops");
     }
       //console.log(data.data.quantity);
   });
