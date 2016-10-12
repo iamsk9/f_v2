@@ -102,7 +102,7 @@ var sampleApp = angular.module('starter', ['ionic', 'starter.controllers', 'back
       views: {
         'menuContent': {
           templateUrl: 'templates/offers.html',
-          controller: 'OffersCtrl'
+          controller: 'AllitemsCtrl'
         }
       }
     });

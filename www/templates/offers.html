@@ -1,4 +1,4 @@
-<ion-view view-title="Offers" style="background: url(img/background.png)">
+<!--<ion-view view-title="Offers" style="background: url(img/background.png)">
   <ion-content padding="true"><br>
     <div ng-repeat="offer in offers">
       <div ng-if="offer.cost">
@@ -16,5 +16,32 @@
           </div><br>
         </div>
       </div><br><br><br>
+  </ion-content>
+</ion-view>-->
+
+<ion-view view-title="List" style="background: url(img/background.png)">
+  <ion-content padding="true"><br>
+    <div ng-repeat="list_item in list_items">
+      <div>
+          <img class="full-image" src={{list_item.filename}}>
+          <center><p>
+            {{list_item.item_name}}
+          </p></center>
+          <div class="cost"><p>
+            RS.{{list_item.cost}}
+          </p>
+          </div>
+          <div class="rating"><p>
+            available:{{list_item.quantity}}
+          </p>
+          </div><br>
+            <div class="add_cart">
+            <ion-checkbox style="color:white" class="checkbox-positive" ng-click="clicked(list_item.id)">Add to cart</ion-checkbox>
+            </div>
+        </div>
+      </div><br><br><br>
+      <center><button class="button button-positive" ng-click="place_order()">
+        Place Order
+    </button></center>
   </ion-content>
 </ion-view>

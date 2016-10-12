@@ -19,6 +19,7 @@ angular.module('starter.services', [])
     var offerName = 'offers/';
     var selected = [];
     var id;
+    var qty=0;
 
     getUserDetails = function(id){
       return $http.get(getUserUrl('user/'));
@@ -67,6 +68,7 @@ angular.module('starter.services', [])
       return $http.get(getOfferUrl());
     };
 
+
     getSavedItems = function(){
       console.log(savedItems);
       return savedItems;
@@ -91,7 +93,6 @@ angular.module('starter.services', [])
   var data = [];
   var i,k=0;
   console.log(savedItems);
-  console.log(data);
   for(i=0;i<selected.length;i++){
     //data = data.concat($filter('filter')(savedItems, {id:selected[i]}));
     for(var j=0;j<savedItems.length;j++)
@@ -110,9 +111,16 @@ angular.module('starter.services', [])
     selectedItem = function (id) {
       var index = selected.indexOf(id);
       if (index > -1)
+          {
           selected.splice(index, 1);
+          qty--;
+         }
       else
+      {
           selected.push(id);
+          qty++;
+      }
+      return qty;
       console.log(selected);
     };
 

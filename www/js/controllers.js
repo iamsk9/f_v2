@@ -187,8 +187,9 @@ angular.module('starter.controllers', [])
     });
 
     $scope.clicked = function (id) {
-      console.log(id);
-      itemsService.selectedItem(id);
+      //console.log(id);
+      $rootScope.qty=itemsService.selectedItem(id);
+      console.log($rootScope.qty);
     };
 
     $scope.place_order = function () {
@@ -199,6 +200,7 @@ angular.module('starter.controllers', [])
 
 })
 .controller('CheckoutCtrl', function($scope, Backand, $http, $rootScope, $ionicPopup, $state,itemsService, $ionicNavBarDelegate, $timeout) {
+
 
 
   function getCost(){
@@ -228,10 +230,28 @@ angular.module('starter.controllers', [])
     }
   };
 
+
+
+  itemsService.getUserDetails().then(function(result){
+    $scope.users = result.data.data;
+    console.log($scope.users);
+    $scope.object = {};
+    for(var k=0;k<$scope.users.length;k++)
+     if($scope.users[k].id == $rootScope.user_id)
+     {
+       $scope.object.name = $scope.users[k].fullname;
+       $scope.object.email = $scope.users[k].email;
+       $scope.object.phoneno =$scope.users[k].phoneno;
+       $scope.object.address = $scope.users[k].address;
+     }
+         console.log($scope.object);
+  });
+
   $scope.clicked = function (id) {
     itemsService.selectedItem(id);
     console.log(id);
     getCost();
+    $rootScope.qty--;
   };
 
   $scope.increment = function(object){
@@ -253,7 +273,7 @@ $scope.decrement = function(object){
    });
   }
 };
-  $scope.object = {};
+
   $scope.order = function(object){
        var baseUrl = '/1/objects/';
        var objectName = 'items/';
