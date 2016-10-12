@@ -319,36 +319,38 @@ $scope.decrement = function(object){
     });
 
 
+    $http.post(getOrderUrl('orders/'),individual_items)
+    .success(function(data) {
+      if (data=='err'){
+        console.log("oops");
+      }
+        //console.log(data.data.quantity);
+    });
 
-  $http.post(getOrderUrl('orders/'),individual_items)
-  .success(function(data) {
-    if (data=='err'){
-      console.log("oops");
-    }
-      //console.log(data.data.quantity);
-  });
-   console.log("placed");
-        var confirmPopup = $ionicPopup.confirm({
-          title: 'Note',
-          template: 'Your order cannot be cancelled once you click the ok option'
-        });
 
-        confirmPopup.then(function(res) {
-          if(res) {
-            var alertPopup = $ionicPopup.alert({
-             title: 'Thank You...',
-             template: "Your Order has been placed.<br>Get Ready to enjoy."
-           });
-           $rootScope.checkcart = false;
-           itemsService.loginingOut();
-           $state.go('app.categories');
-           $ionicNavBarDelegate.showBackButton(false);
-          } else {
-            $state.go('app.checkout');
-            $ionicNavBarDelegate.showBackButton(false);
-          }
-        });
 });
+console.log("placed");
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Note',
+       template: 'Your order cannot be cancelled once you click the ok option'
+     });
+
+     confirmPopup.then(function(res) {
+       if(res) {
+
+         var alertPopup = $ionicPopup.alert({
+          title: 'Thank You...',
+          template: "Your Order has been placed.<br>Get Ready to enjoy."
+        });
+        $rootScope.checkcart = false;
+        itemsService.loginingOut();
+        $state.go('app.categories');
+        $ionicNavBarDelegate.showBackButton(false);
+       } else {
+         $state.go('app.checkout');
+         $ionicNavBarDelegate.showBackButton(false);
+       }
+     });
       //for(i=0;i<$scope.cart_items.length;i++){
       //console.log($scope.cart_items[i].id);
       //cart_data = $scope.cart_items[i];
